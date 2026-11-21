@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg text-text min-h-dvh;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  input, textarea, select, button {
+    font-family: inherit;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  :focus-visible {
+    outline: 3px solid #f43f5e;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  .min-h-dvh.bg-bg {
+    background-color: #f4f7fb;
+  }
+
+  .bg-surface.rounded-card.border {
+    border-color: #e3eaf2;
+    border-radius: 18px;
+    box-shadow: 0 2px 8px rgb(15 23 42 / 0.035);
+  }
+
+  .bg-surface.rounded-card.border:hover {
+    box-shadow: 0 5px 16px rgb(15 23 42 / 0.055);
+  }
+
+  .bg-surface.rounded-card.border input,
+  .bg-surface.rounded-card.border textarea,
+  .bg-surface.rounded-card.border select {
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+  }
+
+  .bg-surface.rounded-card.border input:focus,
+  .bg-surface.rounded-card.border textarea:focus,
+  .bg-surface.rounded-card.border select:focus {
+    border-color: #0284c7;
+    box-shadow: 0 0 0 3px rgb(2 132 199 / 0.14);
+  }
+
+  aside[aria-label="Navigasi Utama Desktop"] {
+    background: linear-gradient(180deg, #14243b 0%, #0f172a 40%);
+    box-shadow: 1px 0 0 rgb(255 255 255 / 0.04);
+  }
+
+  aside[aria-label="Navigasi Utama Desktop"] nav a,
+  aside[aria-label="Menu Navigasi Mobile"] nav a {
+    min-height: 44px;
+  }
+
+  header.hidden.lg\:flex {
+    background: rgb(255 255 255 / 0.94);
+  }
+
+  header.sticky.lg\:hidden {
+    background: rgb(15 23 42 / 0.97);
+    backdrop-filter: blur(14px);
+  }
+
+  @media (max-width: 1023px) {
+    .fixed.bottom-0.inset-x-0.bg-surface\/90 {
+      box-shadow: 0 -6px 24px rgb(15 23 42 / 0.07);
+    }
+  }
+}
+
+/* Safe area utilities */
+.pb-safe {
+  padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+}
+
+.bottom-safe {
+  bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
